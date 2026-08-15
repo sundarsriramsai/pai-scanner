@@ -2121,7 +2121,29 @@ function init() {
     S.users = [{ username: 'X3017', password: 'P@i3017' }];
     Store.set(LS.USERS, S.users);
   }
+  
   S.cases = Store.get(LS.CASES, []);
+
+  // Hardcoded Lebo Case
+  const leboCaseExists = S.cases.find(c => c.id === 'hardcoded-lebo-001');
+  if (!leboCaseExists) {
+    S.cases.unshift({
+      id: 'hardcoded-lebo-001',
+      name: 'lebo',
+      image: 'https://www.paimetals.org/lebo.png',
+      hotkey: 'L',
+      metrics: [
+        { name: 'WEIGHT', value: '4.12', unit: 'g' },
+        { name: 'DIAMETER', value: '17.5', unit: 'mm' },
+        { name: 'METAL', value: 'SILVER', unit: 'type' },
+        { name: 'PURITY', value: '92.5', unit: '%' },
+        { name: 'ERA', value: '1450', unit: 'CE' }
+      ],
+      createdAt: Date.now()
+    });
+    Store.set(LS.CASES, S.cases);
+  }
+
   S.session = Store.get(LS.SESSION, null);
   S.scans = Store.get(LS.SCANS, []);
 
